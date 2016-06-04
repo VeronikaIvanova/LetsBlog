@@ -18,16 +18,7 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
-  def remember
-    self.update_attribute(:remember_digest, new_token)
-  end
 
-  # Remembers a user in a persistent session.
-  def remember(user)
-    user.remember 
-    cookies.permanent[:remember_token] = user.remember_digest
-    cookies.permament.signed[:user_id] = user.id
-  end
 
   private
 
