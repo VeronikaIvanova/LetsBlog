@@ -7,12 +7,17 @@
     <li>
       <%= gravatar_for user %>
       <%= link_to user.name, user %>
-     <% if current_user.admin? && !current_user?(user) %>
-    | <%= link_to "delete", user, method: :delete,
+      <% if current_user.admin? && !current_user?(user)&& !user.admin  %>
+     | <%= link_to "delete", user, method: :delete,
+                                  data: { confirm: "You sure?" } %> 
+     <% end %>
+
+      <% if current_user.admin? && !current_user?(user) && !user.admin %>
+       | <%= link_to "Make admin", user, method: :make_admin,
                                   data: { confirm: "You sure?" } %>
-  <% end %>
+      <% end %>
     </li>
-  <% end %>
+ <% end %>
 </ul>
 
 <%= will_paginate %>
