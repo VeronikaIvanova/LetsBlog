@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :signed_in_user, only: [:create, :destroy]
-  before_filter :load_post, only: :destroy
+  before_action :signed_in_user, only: [:create, :destroy, :edit]
+  before_filter :load_post, only: [:destroy, :edit]
 
 
   def index
@@ -15,6 +15,19 @@ class PostsController < ApplicationController
       render 'static_pages/home'
     end
   end
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update_attributes(post_params)
+      redirect_to @post.user
+    else
+      render 'edit'
+    end
+  end
+
 
   def destroy
     @post.destroy

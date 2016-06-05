@@ -1,0 +1,18 @@
+<h1>Update message</h1>
+
+<div class="row" align='center'>
+  <div class="span6 offset3">
+    <%= form_for(@post) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+
+      <%= f.label :context %>
+      <%= f.text_field :context %>
+
+<p>  
+  <%= f.submit "Save changes", class: "btn btn-large btn-primary" %></p>
+    <% end %>
+</div>
+</div>

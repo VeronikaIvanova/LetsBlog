@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     end
   end
   resources :sessions, only: [:new, :create, :destroy]
-  resources :posts, only: [:create, :destroy]
+  resources :posts, only: [:create, :destroy, :edit, :update]
   resources :relationships, only: [:create, :destroy]
   root  'static_pages#home'
   match '/users/:id', to: 'users#make_admin' ,  via: 'post'
