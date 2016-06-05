@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   
   def make_admin
     @user=User.find(params[:id])
-    @user.admin=true
+    @user.toggle!(:admin)
     redirect_to users_url
   end
 
